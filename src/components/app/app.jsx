@@ -7,8 +7,11 @@ import {
 import DetailedQuest from 'components/detailed-quest/detailed-quest';
 import Contacts from 'components/contacts/contacts';
 import Home from 'components/home/home';
+import Error from 'components/error/error';
+import Stub from 'components/stub/stub';
 import { appTheme } from './common';
 import * as S from './app.styled';
+import { AppRoute } from 'const';
 
 const App = () => (
   <ThemeProvider theme={appTheme}>
@@ -18,11 +21,17 @@ const App = () => (
         <Route exact path="/quest">
           <DetailedQuest />
         </Route>
-        <Route exact path="/contacts">
+        <Route exact path={AppRoute.Contacts}>
           <Contacts />
         </Route>
-        <Route path="/">
+        <Route exact path={AppRoute.Home}>
           <Home />
+        </Route>
+        <Route exact path={AppRoute.Stub}>
+          <Stub />
+        </Route>
+        <Route>
+          <Error />
         </Route>
       </Switch>
     </Router>
