@@ -18,8 +18,12 @@ const App = () => (
     <S.GlobalStyle />
     <Router>
       <Switch>
-        <Route exact path="/quest">
-          <DetailedQuest />
+        <Route exact path={AppRoute.DetailedQuest}
+        render={(routerProps) => {
+          const id = parseInt(routerProps?.match?.params?.id, 10);
+          return <DetailedQuest  currentId={id} />
+        }}
+        >
         </Route>
         <Route exact path={AppRoute.Contacts}>
           <Contacts />
