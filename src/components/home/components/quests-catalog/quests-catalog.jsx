@@ -8,11 +8,12 @@ import {getSelectedTypeOfGenre, getQuestsListByType} from 'store/selectors';
 import {changeTypeOfGenre} from 'store/actions';
 
 const QuestsCatalog = () => {
+
   const typeOfGenre = useSelector(getSelectedTypeOfGenre);
   const quests = useSelector(getQuestsListByType);
 
   const dispatch = useDispatch();
-  const handleTypeOfChange = (typeOfGenre) => {
+  const handleTypeOfGenreChange = (typeOfGenre) => {
     dispatch(changeTypeOfGenre(typeOfGenre));
   };
 
@@ -23,7 +24,7 @@ const QuestsCatalog = () => {
       const key = `${index}-${genre.type}`;
       return <S.TabItem key={key}>
           <S.TabBtn isActive={typeOfGenre === genre.type}
-                   onClick={() => handleTypeOfChange(genre.type)}
+                   onClick={() => handleTypeOfGenreChange(genre.type)}
           >
             {getIcon(genre.type)}
             <S.TabTitle>{genre.name}</S.TabTitle>

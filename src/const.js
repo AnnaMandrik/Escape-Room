@@ -1,7 +1,7 @@
 const STRING_ADDRESS = ':id';
 const PEOPLE_COUNTER_MIN = 0;
 const PEOPLE_COUNTER_MAX = 1;
-const QUESTS_MENU = 'Квесты';
+// const QUESTS_MENU = 'Квесты';
 
 const AppRoute = {
   Home: '/',
@@ -22,7 +22,7 @@ const LevelOfDifficulty = {
     value: "простой",
   },
   MIDDLE: {
-    name: "middle",
+    name: "medium",
     value: "средний",
   },
   HARD: {
@@ -89,4 +89,4 @@ const listOfGenres = [TypeOfGenre.ALL, TypeOfGenre.ADVENTURES, TypeOfGenre.HORRO
 const menuItems = [MenuItems.QUESTS, MenuItems.BEGINNERS, MenuItems.REVIEWS, MenuItems.PROMO, MenuItems.CONTACTS];
 
 export {STRING_ADDRESS, listOfGenres, TypeOfGenre, AppRoute, LevelOfDifficulty,
-   PEOPLE_COUNTER_MIN, PEOPLE_COUNTER_MAX, APIRoute, MenuItems, QUESTS_MENU, menuItems};
+   PEOPLE_COUNTER_MIN, PEOPLE_COUNTER_MAX, APIRoute, MenuItems, menuItems};

@@ -1,15 +1,22 @@
 import { createAction } from '@reduxjs/toolkit';
 
 const ActionType = {
+  ChangeMenuItem: 'menu/changeMenuItem',
   ChangeTypeOfGenre: 'type/changeTypeOfGenre',
   LoadQuestsList: 'quests/loadQuestsList',
   LoadQuest: 'quests/loadQuest',
   PostQuestOrder: 'order/postQuestOrder',
+  IsDataLoaded: 'quests/isDataLoaded',
 }
+
+const changeMenuItem = createAction(
+  ActionType.ChangeMenuItem,
+  (item) => ({payload: item}),
+);
 
 const changeTypeOfGenre = createAction(
   ActionType.ChangeTypeOfGenre,
-  (typeOfGenre) => ({payload: typeOfGenre}),
+  (type) => ({payload: type}),
 );
 
 const loadQuestsList = createAction(
@@ -22,9 +29,14 @@ const loadQuest = createAction(
   (quest) => ({payload: quest}),
 );
 
+const isDataLoaded = createAction(
+  ActionType.IsDataLoaded,
+  (status) => ({payload: status}),
+);
+
 const postQuestOrder = createAction(
   ActionType.PostQuestOrder,
   (order) => ({payload: order,}),
 );
 
-export {changeTypeOfGenre, loadQuestsList, loadQuest, postQuestOrder};
+export {isDataLoaded, changeTypeOfGenre, loadQuestsList, loadQuest, postQuestOrder, changeMenuItem};

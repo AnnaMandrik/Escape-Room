@@ -1,16 +1,17 @@
-import { useDispatch } from 'react-redux';
-import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import logo from 'assets/img/logo.svg';
 import * as S from './header.styled';
-import {AppRoute, TypeOfGenre, QUESTS_MENU, menuItems} from 'const';
-import { changeTypeOfGenre } from 'store/actions';
+import {AppRoute, menuItems} from 'const';
+import {changeMenuItem} from 'store/actions';
+import {getSelectedMenuItem} from 'store/selectors';
 
 const Header = () => {
-  const [selectedMenuItem, setSelectedMenuItem] = useState(QUESTS_MENU);
+
+  const selectedMenuItem = useSelector(getSelectedMenuItem);
 
   const dispatch = useDispatch();
-  const handleChangeTypeOfGenre = () => {
-    dispatch(changeTypeOfGenre(TypeOfGenre.ALL.type));
+  const handleMenuItemChange = (item) => {
+    dispatch(changeMenuItem(item));
   }
 
   return (<S.StyledHeader>
@@ -27,8 +28,7 @@ const Header = () => {
             return (<S.LinkItem key={key}>
               <S.Link $isActiveLink={item.name === selectedMenuItem}
               onClick={() => {
-                setSelectedMenuItem(item.name);
-                handleChangeTypeOfGenre();
+                handleMenuItemChange(item.name);
               }}
               to={item.route}
               >
