@@ -1,7 +1,7 @@
 const STRING_ADDRESS = ':id';
 const PEOPLE_COUNTER_MIN = 0;
 const PEOPLE_COUNTER_MAX = 1;
-const DEFAULT_MENU = 'Квесты';
+const QUESTS_MENU = 'Квесты';
 
 const AppRoute = {
   Home: '/',
@@ -10,8 +10,13 @@ const AppRoute = {
   Stub: '/stub',
   }
 
+const APIRoute = {
+  QuestsList: '/quests',
+  Quest: '/quests/:id',
+  Order: '/orders',
+}
 
-const levelOfDifficulty = {
+const LevelOfDifficulty = {
   EASY: {
     name: "easy",
     value: "простой",
@@ -30,8 +35,7 @@ const levelOfDifficulty = {
   },
 }
 
-
-const typeOfGenre = {
+const TypeOfGenre = {
   ALL: {
     type: 'all',
     name: 'Все квесты',
@@ -58,8 +62,31 @@ const typeOfGenre = {
   },
 }
 
-const listOfGenres = [typeOfGenre.ALL, typeOfGenre.ADVENTURES, typeOfGenre.HORROR, typeOfGenre.MYSTIC, typeOfGenre.DETECTIVE, typeOfGenre.SCI_FI];
+const MenuItems = {
+  QUESTS: {
+    name: 'Квесты',
+    route: AppRoute.Home,
+  },
+  BEGINNERS: {
+    name: 'Новичкам',
+    route: AppRoute.Stub,
+  },
+  REVIEWS: {
+    name: 'Отзывы',
+    route: AppRoute.Stub,
+  },
+  PROMO: {
+    name: 'Акции',
+    route: AppRoute.Stub,
+  },
+  CONTACTS: {
+    name: 'Контакты',
+    route: AppRoute.Contacts,
+  },
+};
 
+const listOfGenres = [TypeOfGenre.ALL, TypeOfGenre.ADVENTURES, TypeOfGenre.HORROR, TypeOfGenre.MYSTIC, TypeOfGenre.DETECTIVE, TypeOfGenre.SCI_FI];
+const menuItems = [MenuItems.QUESTS, MenuItems.BEGINNERS, MenuItems.REVIEWS, MenuItems.PROMO, MenuItems.CONTACTS];
 
-export {STRING_ADDRESS, listOfGenres, typeOfGenre, AppRoute, levelOfDifficulty,
-   PEOPLE_COUNTER_MIN, PEOPLE_COUNTER_MAX, DEFAULT_MENU};
+export {STRING_ADDRESS, listOfGenres, TypeOfGenre, AppRoute, LevelOfDifficulty,
+   PEOPLE_COUNTER_MIN, PEOPLE_COUNTER_MAX, APIRoute, MenuItems, QUESTS_MENU, menuItems};

@@ -12,7 +12,7 @@ import {PEOPLE_COUNTER_MIN, PEOPLE_COUNTER_MAX} from 'const';
 const DetailedQuest = ({currentId}) => {
   const [isBookingModalOpened, setIsBookingModalOpened] = useState(false);
 
-  const onBookingBtnClick = () => {
+  const handleBookingBtnClick = () => {
     setIsBookingModalOpened(true);
   };
 
@@ -53,13 +53,13 @@ const DetailedQuest = ({currentId}) => {
               {currentQuest.description}
             </S.QuestDescription>
 
-            <S.QuestBookingBtn onClick={onBookingBtnClick}>
+            <S.QuestBookingBtn onClick={handleBookingBtnClick}>
               Забронировать
             </S.QuestBookingBtn>
           </S.PageDescription>
         </S.PageContentWrapper>
 
-        {isBookingModalOpened && <BookingModal />}
+        {isBookingModalOpened && <BookingModal onCloseEvent={setIsBookingModalOpened} />}
       </S.Main>
     </MainLayout>
   );

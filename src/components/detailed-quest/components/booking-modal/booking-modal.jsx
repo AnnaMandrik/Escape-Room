@@ -1,11 +1,23 @@
 import * as S from './booking-modal.styled';
 import { ReactComponent as IconClose } from 'assets/img/icon-close.svg';
+import {useEffect} from 'react';
+import {isEscEvent} from 'utils/util';
 
-const BookingModal = () => (
+const BookingModal = ({onCloseEvent}) => {
+  useEffect(() => {
+    document.addEventListener('keydown', isEscEvent(onCloseEvent), false);
+
+    return () => {
+      document.removeEventListener('keydown', isEscEvent(onCloseEvent), false);
+    };
+  }, [onCloseEvent]);
+
+
+  return (
   <S.BlockLayer>
     <S.Modal>
       <S.ModalCloseBtn>
-        <IconClose width="16" height="16" />
+        <IconClose width="16" height="16" onClick={() => onCloseEvent(false)}/>
         <S.ModalCloseLabel>Закрыть окно</S.ModalCloseLabel>
       </S.ModalCloseBtn>
       <S.ModalTitle>Оставить заявку</S.ModalTitle>
@@ -72,6 +84,6 @@ const BookingModal = () => (
       </S.BookingForm>
     </S.Modal>
   </S.BlockLayer>
-);
+)};
 
 export default BookingModal;

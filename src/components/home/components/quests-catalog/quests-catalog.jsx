@@ -1,15 +1,20 @@
-import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { ReactComponent as IconPerson } from 'assets/img/icon-person.svg';
 import { ReactComponent as IconPuzzle } from 'assets/img/icon-puzzle.svg';
 import * as S from './quests-catalog.styled';
-import {questsList} from 'utils/mock';
-import {createLevelOfDifficulty, getIcon, selectGenreOfQuests} from 'utils/util';
-import {STRING_ADDRESS, PEOPLE_COUNTER_MIN, PEOPLE_COUNTER_MAX, typeOfGenre, listOfGenres, AppRoute} from 'const';
-
+import {createLevelOfDifficulty, getIcon} from 'utils/util';
+import {STRING_ADDRESS, PEOPLE_COUNTER_MIN, PEOPLE_COUNTER_MAX, listOfGenres, AppRoute} from 'const';
+import {getSelectedTypeOfGenre, getQuestsListByType} from 'store/selectors';
+import {changeTypeOfGenre} from 'store/actions';
 
 const QuestsCatalog = () => {
-  const [currentGenre, setCurrentGenre] = useState(typeOfGenre.ALL.type)
-  const genreQuests = selectGenreOfQuests(questsList,currentGenre);
+  const typeOfGenre = useSelector(getSelectedTypeOfGenre);
+  const quests = useSelector(getQuestsListByType);
+
+  const dispatch = useDispatch();
+  const handleTypeOfChange = (typeOfGenre) => {
+    dispatch(changeTypeOfGenre(typeOfGenre));
+  };
 
   return (
     <>
@@ -17,8 +22,8 @@ const QuestsCatalog = () => {
     {listOfGenres.map((genre, index) => {
       const key = `${index}-${genre.type}`;
       return <S.TabItem key={key}>
-          <S.TabBtn isActive={currentGenre === genre.type}
-                   onClick={() => setCurrentGenre(genre.type)}
+          <S.TabBtn isActive={typeOfGenre === genre.type}
+                   onClick={() => handleTypeOfChange(genre.type)}
           >
             {getIcon(genre.type)}
             <S.TabTitle>{genre.name}</S.TabTitle>
@@ -28,7 +33,7 @@ const QuestsCatalog = () => {
     </S.Tabs>
 
     <S.QuestsList>
-    {genreQuests.map((quest) => {
+    {quests.map((quest) => {
       return <S.QuestItem key={quest.id}>
         <S.QuestItemLink to={AppRoute.DetailedQuest.replace(STRING_ADDRESS, String(quest.id))}>
           <S.Quest>
