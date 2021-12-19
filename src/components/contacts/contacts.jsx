@@ -1,9 +1,15 @@
+import { useDispatch } from 'react-redux';
 import { MainLayout, PageTitle, PageSubtext } from 'components/common/common';
 import contactsMap from 'assets/img/contacts-map.jpg';
 import * as S from './contacts.styled';
+import {changeMenuItem} from 'store/actions';
+import {MenuItems} from 'const';
 
-const Contacts = () => (
-  <MainLayout>
+const Contacts = () => {
+  const dispatch = useDispatch();
+  dispatch(changeMenuItem(MenuItems.CONTACTS.name));
+
+  return (<MainLayout>
     <S.Main>
       <S.ContentWrapper>
         <S.PageHeading>
@@ -51,7 +57,7 @@ const Contacts = () => (
         </S.Contacts>
       </S.ContentWrapper>
     </S.Main>
-  </MainLayout>
-);
+  </MainLayout>)
+};
 
 export default Contacts;

@@ -11,7 +11,7 @@ import Error from 'components/error/error';
 import Stub from 'components/stub/stub';
 import { appTheme } from './common';
 import * as S from './app.styled';
-import { AppRoute } from 'const';
+import {AppRoute, BASIS_VALUE} from 'const';
 
 const App = () => (
   <ThemeProvider theme={appTheme}>
@@ -20,7 +20,7 @@ const App = () => (
       <Switch>
         <Route exact path={AppRoute.DetailedQuest}
         render={(routerProps) => {
-          const id = parseInt(routerProps?.match?.params?.id, 10);
+          const id = parseInt(routerProps?.match?.params?.id, BASIS_VALUE);
           return <DetailedQuest  currentId={id} />
         }}
         >

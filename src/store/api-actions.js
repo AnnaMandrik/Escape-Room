@@ -3,9 +3,14 @@ import {loadQuest, loadQuestsList, isDataLoaded} from './actions';
 
 const fetchLoadQuestsListAction = () =>
   async (dispatch, _getState, api) => {
-    const {data} = await api.get(APIRoute.QuestsList);
-
-    dispatch(loadQuestsList(data));
+    dispatch(isDataLoaded(true));
+    try {
+      const {data} = await api.get(APIRoute.QuestsList);
+      dispatch(loadQuestsList(data));
+    } catch {
+      dispatch(loadQuestsList([]));
+    }
+    dispatch(isDataLoaded(false));
 };
 
 const fetchLoadQuestAction = (id) =>
@@ -20,4 +25,17 @@ const fetchLoadQuestAction = (id) =>
     dispatch(isDataLoaded(false));
 };
 
-export {fetchLoadQuestsListAction, fetchLoadQuestAction};
+const postOrderAction = (orderData, onSuccess, onFail, setIsChecked) =>
+  async (dispatch, _getState, api) => {
+    try {
+      setIsChecked(true);
+      await api.post(APIRoute.Order, orderData);
+      onSuccess();
+    } catch (error) {
+      onFail();
+      throw (error);
+    }
+  }
+
+
+export {fetchLoadQuestsListAction, fetchLoadQuestAction, postOrderAction};

@@ -1,5 +1,5 @@
 import {createReducer} from '@reduxjs/toolkit';
-import {isDataLoaded, changeTypeOfGenre, loadQuest, loadQuestsList, postQuestOrder, changeMenuItem} from './actions';
+import {isDataLoaded, changeTypeOfGenre, loadQuest, loadQuestsList, changeMenuItem} from './actions';
 import {TypeOfGenre, MenuItems} from 'const';
 
 const initialState = {
@@ -7,7 +7,6 @@ const initialState = {
   selectedTypeOfGenre: TypeOfGenre.ALL.type,
   questsList: [],
   quest: null,
-  questOrder: {},
   isDataLoaded: true,
 };
 
@@ -29,9 +28,6 @@ const questsData = createReducer(initialState, (builder) => {
     .addCase(isDataLoaded, (state, action) => {
       state.isDataLoaded = action.payload;
     })
-    .addCase(postQuestOrder, (state, action) => {
-      state.questOrder = action.payload;
-    });
 });
 
 export {questsData};

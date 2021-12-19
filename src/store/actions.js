@@ -5,8 +5,8 @@ const ActionType = {
   ChangeTypeOfGenre: 'type/changeTypeOfGenre',
   LoadQuestsList: 'quests/loadQuestsList',
   LoadQuest: 'quests/loadQuest',
-  PostQuestOrder: 'order/postQuestOrder',
   IsDataLoaded: 'quests/isDataLoaded',
+  PostOrder: 'order/postOrder',
 }
 
 const changeMenuItem = createAction(
@@ -34,9 +34,5 @@ const isDataLoaded = createAction(
   (status) => ({payload: status}),
 );
 
-const postQuestOrder = createAction(
-  ActionType.PostQuestOrder,
-  (order) => ({payload: order,}),
-);
 
-export {isDataLoaded, changeTypeOfGenre, loadQuestsList, loadQuest, postQuestOrder, changeMenuItem};
+export {isDataLoaded, changeTypeOfGenre, loadQuestsList, loadQuest, changeMenuItem};

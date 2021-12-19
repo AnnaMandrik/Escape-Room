@@ -2,20 +2,27 @@ import { useDispatch, useSelector } from 'react-redux';
 import { ReactComponent as IconPerson } from 'assets/img/icon-person.svg';
 import { ReactComponent as IconPuzzle } from 'assets/img/icon-puzzle.svg';
 import * as S from './quests-catalog.styled';
-import {createLevelOfDifficulty, getIcon} from 'utils/util';
-import {STRING_ADDRESS, PEOPLE_COUNTER_MIN, PEOPLE_COUNTER_MAX, listOfGenres, AppRoute} from 'const';
-import {getSelectedTypeOfGenre, getQuestsListByType} from 'store/selectors';
+import {createLevelOfDifficulty, getIcon, createPeopleCount} from 'utils/util';
+import {STRING_ADDRESS, listOfGenres, AppRoute} from 'const';
+import {getSelectedTypeOfGenre, getQuestsListByType, getLoadedData} from 'store/selectors';
 import {changeTypeOfGenre} from 'store/actions';
+import Spinner from 'components/spinner/spinner';
 
 const QuestsCatalog = () => {
 
   const typeOfGenre = useSelector(getSelectedTypeOfGenre);
   const quests = useSelector(getQuestsListByType);
+  const isLoaded = useSelector(getLoadedData);
 
   const dispatch = useDispatch();
   const handleTypeOfGenreChange = (typeOfGenre) => {
     dispatch(changeTypeOfGenre(typeOfGenre));
   };
+
+  if (isLoaded) {
+    return <Spinner />;
+  }
+
 
   return (
     <>
@@ -51,7 +58,7 @@ const QuestsCatalog = () => {
               <S.QuestFeatures>
                 <S.QuestFeatureItem>
                   <IconPerson />
-                  {`${quest.peopleCount[PEOPLE_COUNTER_MIN]}-${quest.peopleCount[PEOPLE_COUNTER_MAX]} чел`}
+                  {createPeopleCount(quest.peopleCount)}
                 </S.QuestFeatureItem>
                 <S.QuestFeatureItem>
                   <IconPuzzle />

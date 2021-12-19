@@ -1,7 +1,12 @@
 const STRING_ADDRESS = ':id';
-const PEOPLE_COUNTER_MIN = 0;
-const PEOPLE_COUNTER_MAX = 1;
-// const QUESTS_MENU = 'Квесты';
+const SUCCESS_MESSAGE = 'Заявка отправлена!';
+const ERROR_MESSAGE = 'Ошибка отправки! Попробуйте повторить позже';
+const BASIS_VALUE = 10;
+
+const PeopleCounter = {
+  min: 0,
+  max: 1,
+}
 
 const AppRoute = {
   Home: '/',
@@ -88,5 +93,5 @@ const MenuItems = {
 const listOfGenres = [TypeOfGenre.ALL, TypeOfGenre.ADVENTURES, TypeOfGenre.HORROR, TypeOfGenre.MYSTIC, TypeOfGenre.DETECTIVE, TypeOfGenre.SCI_FI];
 const menuItems = [MenuItems.QUESTS, MenuItems.BEGINNERS, MenuItems.REVIEWS, MenuItems.PROMO, MenuItems.CONTACTS];
 
-export {STRING_ADDRESS, listOfGenres, TypeOfGenre, AppRoute, LevelOfDifficulty,
-   PEOPLE_COUNTER_MIN, PEOPLE_COUNTER_MAX, APIRoute, MenuItems, menuItems};
+export {STRING_ADDRESS, listOfGenres, TypeOfGenre, AppRoute, LevelOfDifficulty,BASIS_VALUE,
+  PeopleCounter, APIRoute, MenuItems, menuItems, SUCCESS_MESSAGE, ERROR_MESSAGE};

@@ -1,4 +1,4 @@
-import {LevelOfDifficulty, TypeOfGenre} from 'const';
+import {LevelOfDifficulty, TypeOfGenre, PeopleCounter} from 'const';
 import { ReactComponent as IconAllQuests } from 'assets/img/icon-all-quests.svg';
 import { ReactComponent as IconAdventures } from 'assets/img/icon-adventures.svg';
 import { ReactComponent as IconHorrors } from 'assets/img/icon-horrors.svg';
@@ -63,5 +63,8 @@ const isEscEvent = (callback) => {
   };
 };
 
+const createPeopleCount = (peopleCount) => `${peopleCount[PeopleCounter.min]}–${peopleCount[PeopleCounter.max]} чел`;
 
-export {createLevelOfDifficulty, getIcon, selectGenreOfQuests, createTypeOfGenre, isEscEvent};
+
+export {createLevelOfDifficulty, getIcon, selectGenreOfQuests, createTypeOfGenre, isEscEvent, createPeopleCount};
+

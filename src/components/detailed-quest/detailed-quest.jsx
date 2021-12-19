@@ -10,8 +10,7 @@ import ErrorPage from 'components/error/error';
 import Spinner from 'components/spinner/spinner';
 import {fetchLoadQuestAction} from 'store/api-actions';
 import {getSelectedQuest, getLoadedData} from 'store/selectors';
-import {createTypeOfGenre, createLevelOfDifficulty} from 'utils/util';
-import {PEOPLE_COUNTER_MIN, PEOPLE_COUNTER_MAX} from 'const';
+import {createTypeOfGenre, createLevelOfDifficulty, createPeopleCount} from 'utils/util';
 
 const DetailedQuest = ({currentId}) => {
 
@@ -60,7 +59,7 @@ const DetailedQuest = ({currentId}) => {
               </S.FeaturesItem>
               <S.FeaturesItem>
                 <IconPerson width="19" height="24" />
-                <S.FeatureTitle>{`${peopleCount[PEOPLE_COUNTER_MIN]}-${peopleCount[PEOPLE_COUNTER_MAX]} чел`}</S.FeatureTitle>
+                <S.FeatureTitle>{createPeopleCount(peopleCount)}</S.FeatureTitle>
               </S.FeaturesItem>
               <S.FeaturesItem>
                 <IconPuzzle width="24" height="24" />
