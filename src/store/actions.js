@@ -6,7 +6,6 @@ const ActionType = {
   LoadQuestsList: 'quests/loadQuestsList',
   LoadQuest: 'quests/loadQuest',
   IsDataLoaded: 'quests/isDataLoaded',
-  PostOrder: 'order/postOrder',
 }
 
 const changeMenuItem = createAction(

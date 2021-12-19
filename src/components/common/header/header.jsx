@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import logo from 'assets/img/logo.svg';
 import * as S from './header.styled';
-import {AppRoute, menuItems} from 'const';
+import {AppRoute, menuItems, MenuItems} from 'const';
 import {changeMenuItem} from 'store/actions';
 import {getSelectedMenuItem} from 'store/selectors';
 
@@ -16,9 +16,9 @@ const Header = () => {
 
   return (<S.StyledHeader>
     <S.HeaderWrapper>
-     <S.LogoLink to={AppRoute.Home}>
+     <S.Logo href={(selectedMenuItem !== MenuItems.QUESTS.name) ? AppRoute.Home : undefined}>
         <S.Image src={logo} alt="Логотип Escape Room" width="134" height="50" />
-      </S.LogoLink>
+      </S.Logo>
 
       <S.Navigation>
         <S.Links>

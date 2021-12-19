@@ -34,10 +34,6 @@ const LevelOfDifficulty = {
     name: "hard",
     value: "сложный",
   },
-  UNDEFINED: {
-    name: "undefined",
-    value: "не определен",
-  },
 }
 
 const TypeOfGenre = {

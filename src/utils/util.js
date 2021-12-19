@@ -15,7 +15,7 @@ const createLevelOfDifficulty = (level) => {
     case LevelOfDifficulty.HARD.name:
       return LevelOfDifficulty.HARD.value;
     default:
-      return LevelOfDifficulty.UNDEFINED.value;
+      return;
  }
 }
 

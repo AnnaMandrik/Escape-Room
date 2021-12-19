@@ -10,12 +10,12 @@ import {SUCCESS_MESSAGE, ERROR_MESSAGE, BASIS_VALUE} from 'const';
 
 const BookingModal = ({onCloseEvent}) => {
 
-  const [, setIsChecked] = useState(false);
+  const [isSending, setIsSending] = useState(false);
   const dispatch = useDispatch();
 
   const nameRef = useRef(null);
   const phoneRef = useRef(null);
-  const peopleRef = useRef(null);
+  const peopleCountRef = useRef(null);
   const isLegalRef = useRef(null);
 
   useEffect(() => {
@@ -27,22 +27,25 @@ const BookingModal = ({onCloseEvent}) => {
   }, [onCloseEvent]);
 
   const onSuccess = () => {
+    setIsSending(true);
     onCloseEvent(false);
     toast.success(SUCCESS_MESSAGE);
   };
 
-  const onFail = () => {
+  const onError = () => {
+    setIsSending(false);
     toast.error(ERROR_MESSAGE);
   };
 
   const handleFormSubmit = (evt) => {
     evt.preventDefault();
-    dispatch(postOrderAction({
+    dispatch(postOrderAction(
+      {
       name: nameRef.current.value,
-      peopleCount: Number(peopleRef.current.value, BASIS_VALUE),
+      peopleCount: Number(peopleCountRef.current.value, BASIS_VALUE),
       phone: phoneRef.current.value,
       isLegal: isLegalRef.current.checked,
-    }, onSuccess, onFail, setIsChecked),
+    }, onSuccess, onError),
     );
   };
 
@@ -56,13 +59,14 @@ const BookingModal = ({onCloseEvent}) => {
       </S.ModalCloseBtn>
       <S.ModalTitle>Оставить заявку</S.ModalTitle>
       <S.BookingForm
-      onSubmit={handleFormSubmit}
+       onSubmit={handleFormSubmit}
         method="post"
         id="booking-form"
       >
         <S.BookingField>
           <S.BookingLabel htmlFor="booking-name">Ваше Имя</S.BookingLabel>
           <S.BookingInput
+            disabled={isSending}
             ref={nameRef}
             type="text"
             id="booking-name"
@@ -76,12 +80,15 @@ const BookingModal = ({onCloseEvent}) => {
             Контактный телефон
           </S.BookingLabel>
           <S.BookingInput
+            disabled={isSending}
             ref={phoneRef}
             type="tel"
             id="booking-phone"
             name="booking-phone"
             placeholder="Телефон"
             required
+            maxLength="10"
+            minLength="10"
           />
         </S.BookingField>
         <S.BookingField>
@@ -89,7 +96,8 @@ const BookingModal = ({onCloseEvent}) => {
             Количество участников
           </S.BookingLabel>
           <S.BookingInput
-            ref={peopleRef}
+            disabled={isSending}
+            ref={peopleCountRef}
             type="number"
             id="booking-people"
             name="booking-people"
@@ -97,9 +105,10 @@ const BookingModal = ({onCloseEvent}) => {
             required
           />
         </S.BookingField>
-        <S.BookingSubmit type="submit">Отправить заявку</S.BookingSubmit>
+        <S.BookingSubmit type="submit" disabled={isSending}>Отправить заявку</S.BookingSubmit>
         <S.BookingCheckboxWrapper>
           <S.BookingCheckboxInput
+            disabled={isSending}
             ref={isLegalRef}
             type="checkbox"
             id="booking-legal"

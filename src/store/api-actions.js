@@ -25,15 +25,15 @@ const fetchLoadQuestAction = (id) =>
     dispatch(isDataLoaded(false));
 };
 
-const postOrderAction = (orderData, onSuccess, onFail, setIsChecked) =>
+const postOrderAction = ({name, peopleCount, phone, isLegal}, onSuccess, onError) =>
   async (dispatch, _getState, api) => {
     try {
-      setIsChecked(true);
-      await api.post(APIRoute.Order, orderData);
-      onSuccess();
+      await api.post(APIRoute.Order, {name, peopleCount, phone, isLegal});
+        onSuccess();
+
     } catch (error) {
-      onFail();
-      throw (error);
+      onError();
+      console.error(error);
     }
   }
 
